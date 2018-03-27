@@ -7,10 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
 @class IVImageLoader;
 
+@protocol IVFullSizeImageViewerControllerDelegate
+- (void)didESCPressed;
+@end
+
 @interface IVFullSizeImageViewerController : NSViewController
-
+@property (nonatomic, weak) id<IVFullSizeImageViewerControllerDelegate>delegate;
 - (void)showImageFromLoader:(IVImageLoader *)imageLoader byIndex:(NSInteger)index;
-
 @end

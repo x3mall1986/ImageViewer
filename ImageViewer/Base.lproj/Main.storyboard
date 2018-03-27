@@ -836,6 +836,20 @@
                                     <constraint firstAttribute="trailing" secondItem="3IG-qr-rS8" secondAttribute="trailing" constant="10" id="ycW-0Z-0yv"/>
                                 </constraints>
                             </customView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uF-bZ-Oml">
+                                <rect key="frame" x="133" y="140" width="80" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" title="Round Rect" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HxB-hk-NwN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeView:" target="sDl-4I-Hxa" id="5HK-ZW-X2s"/>
+                                </connections>
+                            </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yme-0o-Yo2">
                                 <rect key="frame" x="17" y="17" width="312" height="266"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="tOC-Rx-gKe"/>

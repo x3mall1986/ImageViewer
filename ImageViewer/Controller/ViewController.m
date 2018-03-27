@@ -12,7 +12,7 @@
 #import "IVCollectionView.h"
 #import "IVFullSizeImageViewerController.h"
 
-@interface ViewController()<NSCollectionViewDataSource, NSCollectionViewDelegate, DragCollectionViewDelegate>
+@interface ViewController()<NSCollectionViewDataSource, NSCollectionViewDelegate, DragCollectionViewDelegate, IVFullSizeImageViewerControllerDelegate>
 @property (nonatomic, weak) IBOutlet IVCollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet NSView *containerView;
 
@@ -43,12 +43,6 @@
     [self.containerView.layer setBackgroundColor:[[NSColor whiteColor] CGColor]];
 }
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
-}
-
 #pragma mark - CollectionViewController Data Source
 - (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView {
     return 1;
@@ -67,6 +61,8 @@
 
 #pragma mark - CollectionViewController Delegate
 - (void)collectionView:(NSCollectionView *)collectionView didSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
+    [collectionView deselectItemsAtIndexPaths:indexPaths];
+    
     NSIndexPath *indexPath = indexPaths.allObjects.firstObject;
     [self.fullSizeImageViewController showImageFromLoader:self.imageLoader byIndex:indexPath.item];
     self.containerView.hidden = NO;
@@ -78,10 +74,16 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark - FullSizeImageViewerController Delegate
+- (void)didESCPressed {
+    self.containerView.hidden = YES;
+}
+
 #pragma mark - Segue
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"FullImageViewSegue"]) {
         self.fullSizeImageViewController = segue.destinationController;
+        self.fullSizeImageViewController.delegate = self;
     }
 }
 
