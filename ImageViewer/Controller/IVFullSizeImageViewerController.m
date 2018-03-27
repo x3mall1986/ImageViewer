@@ -8,6 +8,7 @@
 
 #import "IVFullSizeImageViewerController.h"
 #import "IVImageLoader.h"
+#import "NSImage+GuasianBlur.h"
 
 @interface IVFullSizeImageViewerController ()
 
@@ -59,5 +60,6 @@
 }
 
 - (IBAction)blurButtonClicked:(NSButton *)sender {
+    self.imageView.image = [self.imageView.image iv_guasianBlur];
 }
 @end

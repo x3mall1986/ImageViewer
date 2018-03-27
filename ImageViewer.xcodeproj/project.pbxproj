@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A239231D206A7F5200F80FE3 /* IVFullSizeImageViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A239231C206A7F5200F80FE3 /* IVFullSizeImageViewerController.m */; };
+		A2392320206A87D000F80FE3 /* NSImage+GuasianBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = A239231F206A87D000F80FE3 /* NSImage+GuasianBlur.m */; };
 		A27A8D392065557D004C75C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A27A8D382065557D004C75C5 /* AppDelegate.m */; };
 		A27A8D3C2065557D004C75C5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A27A8D3B2065557D004C75C5 /* ViewController.m */; };
 		A27A8D3E2065557D004C75C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27A8D3D2065557D004C75C5 /* Assets.xcassets */; };
@@ -23,6 +24,8 @@
 /* Begin PBXFileReference section */
 		A239231B206A7F5200F80FE3 /* IVFullSizeImageViewerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVFullSizeImageViewerController.h; sourceTree = "<group>"; };
 		A239231C206A7F5200F80FE3 /* IVFullSizeImageViewerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IVFullSizeImageViewerController.m; sourceTree = "<group>"; };
+		A239231E206A87D000F80FE3 /* NSImage+GuasianBlur.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+GuasianBlur.h"; sourceTree = "<group>"; };
+		A239231F206A87D000F80FE3 /* NSImage+GuasianBlur.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+GuasianBlur.m"; sourceTree = "<group>"; };
 		A27A8D342065557D004C75C5 /* ImageViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27A8D372065557D004C75C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A27A8D382065557D004C75C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				A27A8D5020655B2D004C75C5 /* IVCollectionViewItem.xib */,
 				A27A8D562069BBA8004C75C5 /* IVCollectionView.h */,
 				A27A8D572069BBA8004C75C5 /* IVCollectionView.m */,
+				A239231E206A87D000F80FE3 /* NSImage+GuasianBlur.h */,
+				A239231F206A87D000F80FE3 /* NSImage+GuasianBlur.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				A27A8D442065557D004C75C5 /* main.m in Sources */,
 				A239231D206A7F5200F80FE3 /* IVFullSizeImageViewerController.m in Sources */,
 				A27A8D392065557D004C75C5 /* AppDelegate.m in Sources */,
+				A2392320206A87D000F80FE3 /* NSImage+GuasianBlur.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
