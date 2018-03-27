@@ -14,6 +14,6 @@
 
 @interface IVCollectionView : NSCollectionView
 
-@property (weak) id<DragCollectionViewDelegate> dragViewDelegate;
+@property (nonatomic, weak) id<DragCollectionViewDelegate> dragViewDelegate;
 
 @end

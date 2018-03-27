@@ -687,8 +687,9 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="480" height="300"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -715,7 +716,7 @@
                                     <rect key="frame" x="1" y="1" width="478" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="tO4-xQ-KWZ" customClass="IVCollectionView">
+                                        <collectionView selectable="YES" id="tO4-xQ-KWZ" customClass="IVCollectionView">
                                             <rect key="frame" x="0.0" y="0.0" width="478" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="fJQ-4s-DW1">
@@ -740,21 +741,127 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <containerView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mpn-wZ-f2S">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <connections>
+                                    <segue destination="sDl-4I-Hxa" kind="embed" identifier="FullImageViewSegue" id="pN6-Hp-WYW"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="XHa-dk-rNw" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="H5C-8c-dJ1"/>
+                            <constraint firstItem="Mpn-wZ-f2S" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="J0G-kS-GZh"/>
+                            <constraint firstItem="Mpn-wZ-f2S" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="JvL-ww-ghQ"/>
+                            <constraint firstAttribute="bottom" secondItem="Mpn-wZ-f2S" secondAttribute="bottom" id="Vg3-sN-qT6"/>
                             <constraint firstAttribute="trailing" secondItem="XHa-dk-rNw" secondAttribute="trailing" id="hn2-vH-42s"/>
+                            <constraint firstAttribute="trailing" secondItem="Mpn-wZ-f2S" secondAttribute="trailing" id="jB2-c2-hzJ"/>
                             <constraint firstItem="XHa-dk-rNw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="mch-mT-weS"/>
                             <constraint firstAttribute="bottom" secondItem="XHa-dk-rNw" secondAttribute="bottom" id="nYH-to-TJi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="tO4-xQ-KWZ" id="wFQ-45-N6Z"/>
+                        <outlet property="containerView" destination="Mpn-wZ-f2S" id="lU6-8p-CBp"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
+        <!--Full Size Image Viewer Controller-->
+        <scene sceneID="2MM-Tb-JG5">
+            <objects>
+                <viewController id="sDl-4I-Hxa" customClass="IVFullSizeImageViewerController" sceneMemberID="viewController">
+                    <view key="view" id="d4i-jL-pm6">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yNV-Dr-xN7">
+                                <rect key="frame" x="334" y="0.0" width="116" height="300"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3IG-qr-rS8">
+                                        <rect key="frame" x="8" y="120" width="100" height="59"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="EMz-M6-gjM"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" title="BLUR" bezelStyle="regularSquare" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2QM-6p-iqR">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="blurButtonClicked:" target="sDl-4I-Hxa" id="pO8-Gr-bQf"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JXu-pY-hyL">
+                                        <rect key="frame" x="8" y="17" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="96" id="Ck0-by-tlJ"/>
+                                            <constraint firstAttribute="height" constant="95" id="STh-TI-HcW"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="arrow_down" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aHl-nL-Wvs">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent"></string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="downButtonClicked:" target="sDl-4I-Hxa" id="Vrs-7a-D8H"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HR1-82-JfA">
+                                        <rect key="frame" x="8" y="182" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="95" id="XP0-dZ-LSo"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="arrow_up" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8gb-4a-v23">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent"></string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="upButtonClicked:" target="sDl-4I-Hxa" id="VDo-NQ-BlF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="HR1-82-JfA" firstAttribute="centerX" secondItem="yNV-Dr-xN7" secondAttribute="centerX" id="1s1-kJ-OAT"/>
+                                    <constraint firstItem="JXu-pY-hyL" firstAttribute="centerX" secondItem="yNV-Dr-xN7" secondAttribute="centerX" id="7YC-6O-XEh"/>
+                                    <constraint firstItem="3IG-qr-rS8" firstAttribute="leading" secondItem="yNV-Dr-xN7" secondAttribute="leading" constant="10" id="EZq-8D-7lZ"/>
+                                    <constraint firstItem="3IG-qr-rS8" firstAttribute="centerY" secondItem="yNV-Dr-xN7" secondAttribute="centerY" id="G9i-eG-vIU"/>
+                                    <constraint firstItem="HR1-82-JfA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yNV-Dr-xN7" secondAttribute="leading" id="Jrn-Yy-Mmd"/>
+                                    <constraint firstAttribute="trailing" secondItem="HR1-82-JfA" secondAttribute="trailing" constant="10" id="MoN-Oq-gTy"/>
+                                    <constraint firstAttribute="width" constant="116" id="X4K-F3-TnO"/>
+                                    <constraint firstAttribute="bottom" secondItem="JXu-pY-hyL" secondAttribute="bottom" constant="20" id="X7R-W3-xYd"/>
+                                    <constraint firstItem="3IG-qr-rS8" firstAttribute="centerX" secondItem="yNV-Dr-xN7" secondAttribute="centerX" id="klO-aV-WhE"/>
+                                    <constraint firstItem="HR1-82-JfA" firstAttribute="top" secondItem="yNV-Dr-xN7" secondAttribute="top" constant="20" id="tdA-x0-KYR"/>
+                                    <constraint firstAttribute="trailing" secondItem="3IG-qr-rS8" secondAttribute="trailing" constant="10" id="ycW-0Z-0yv"/>
+                                </constraints>
+                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yme-0o-Yo2">
+                                <rect key="frame" x="17" y="17" width="312" height="266"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="tOC-Rx-gKe"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yNV-Dr-xN7" firstAttribute="top" secondItem="d4i-jL-pm6" secondAttribute="top" id="0ja-SA-Sv9"/>
+                            <constraint firstAttribute="bottom" secondItem="yNV-Dr-xN7" secondAttribute="bottom" id="1hH-rf-RgW"/>
+                            <constraint firstItem="yNV-Dr-xN7" firstAttribute="leading" secondItem="yme-0o-Yo2" secondAttribute="trailing" constant="8" id="M3J-lO-Qf6"/>
+                            <constraint firstAttribute="trailing" secondItem="yNV-Dr-xN7" secondAttribute="trailing" id="Orj-LO-2Ac"/>
+                            <constraint firstAttribute="bottom" secondItem="yme-0o-Yo2" secondAttribute="bottom" constant="20" id="Rnl-TW-SMm"/>
+                            <constraint firstItem="yme-0o-Yo2" firstAttribute="top" secondItem="d4i-jL-pm6" secondAttribute="top" constant="20" id="fQY-9S-UVc"/>
+                            <constraint firstItem="yme-0o-Yo2" firstAttribute="leading" secondItem="d4i-jL-pm6" secondAttribute="leading" constant="20" id="imR-OV-IL8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="yme-0o-Yo2" id="R47-ow-VnK"/>
+                    </connections>
+                </viewController>
+                <customObject id="aYP-IE-Wnj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="617" y="655"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="arrow_down" width="512" height="512"/>
+        <image name="arrow_up" width="512" height="512"/>
+    </resources>
 </document>

@@ -10,11 +10,14 @@
 #import "IVCollectionViewItem.h"
 #import "IVImageLoader.h"
 #import "IVCollectionView.h"
+#import "IVFullSizeImageViewerController.h"
 
 @interface ViewController()<NSCollectionViewDataSource, NSCollectionViewDelegate, DragCollectionViewDelegate>
-@property (weak) IBOutlet IVCollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet IVCollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet NSView *containerView;
 
-@property (strong) IVImageLoader *imageLoader;
+@property (nonatomic, strong) IVFullSizeImageViewerController *fullSizeImageViewController;
+@property (nonatomic, strong) IVImageLoader *imageLoader;
 @end
 
 @implementation ViewController
@@ -35,6 +38,9 @@
     // Do any additional setup after loading the view.
     
     self.collectionView.dragViewDelegate = self;
+    
+    [self.containerView setWantsLayer:YES];
+    [self.containerView.layer setBackgroundColor:[[NSColor whiteColor] CGColor]];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -60,24 +66,23 @@
 }
 
 #pragma mark - CollectionViewController Delegate
-- (NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id <NSDraggingInfo>)draggingInfo proposedIndexPath:(NSIndexPath * __nonnull * __nonnull)proposedDropIndexPath dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
-    
-    NSLog(@"Validate drop: %@", draggingInfo);
-    
-    return NSDragOperationMove;
-}
-
-- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id <NSDraggingInfo>)draggingInfo indexPath:(NSIndexPath *)indexPath dropOperation:(NSCollectionViewDropOperation)dropOperation {
-    
-    NSLog(@"Accept drop: %@", draggingInfo);
-    
-    return YES;
+- (void)collectionView:(NSCollectionView *)collectionView didSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
+    NSIndexPath *indexPath = indexPaths.allObjects.firstObject;
+    [self.fullSizeImageViewController showImageFromLoader:self.imageLoader byIndex:indexPath.item];
+    self.containerView.hidden = NO;
 }
 
 #pragma mark - DragCollectionView Delegate
 - (void)didDragFileWithURL:(NSURL *)URL {
     [self.imageLoader addImageByURL:URL];
     [self.collectionView reloadData];
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"FullImageViewSegue"]) {
+        self.fullSizeImageViewController = segue.destinationController;
+    }
 }
 
 @end
