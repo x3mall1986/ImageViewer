@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A239231D206A7F5200F80FE3 /* IVFullSizeImageViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A239231C206A7F5200F80FE3 /* IVFullSizeImageViewerController.m */; };
 		A2392320206A87D000F80FE3 /* NSImage+GuasianBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = A239231F206A87D000F80FE3 /* NSImage+GuasianBlur.m */; };
+		A2751542206CEB23000E300A /* NSImageThumbnailExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A2751541206CEB23000E300A /* NSImageThumbnailExtensions.m */; };
+		A275154F206CF7F1000E300A /* IVImagePropertyContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A275154E206CF7F1000E300A /* IVImagePropertyContainer.m */; };
 		A27A8D392065557D004C75C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A27A8D382065557D004C75C5 /* AppDelegate.m */; };
 		A27A8D3C2065557D004C75C5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A27A8D3B2065557D004C75C5 /* ViewController.m */; };
 		A27A8D3E2065557D004C75C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27A8D3D2065557D004C75C5 /* Assets.xcassets */; };
@@ -26,6 +28,10 @@
 		A239231C206A7F5200F80FE3 /* IVFullSizeImageViewerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IVFullSizeImageViewerController.m; sourceTree = "<group>"; };
 		A239231E206A87D000F80FE3 /* NSImage+GuasianBlur.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+GuasianBlur.h"; sourceTree = "<group>"; };
 		A239231F206A87D000F80FE3 /* NSImage+GuasianBlur.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+GuasianBlur.m"; sourceTree = "<group>"; };
+		A2751540206CEB23000E300A /* NSImageThumbnailExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSImageThumbnailExtensions.h; sourceTree = "<group>"; };
+		A2751541206CEB23000E300A /* NSImageThumbnailExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSImageThumbnailExtensions.m; sourceTree = "<group>"; };
+		A275154D206CF7F1000E300A /* IVImagePropertyContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVImagePropertyContainer.h; sourceTree = "<group>"; };
+		A275154E206CF7F1000E300A /* IVImagePropertyContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IVImagePropertyContainer.m; sourceTree = "<group>"; };
 		A27A8D342065557D004C75C5 /* ImageViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27A8D372065557D004C75C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A27A8D382065557D004C75C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -58,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2751543206CEBEA000E300A /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				A2751540206CEB23000E300A /* NSImageThumbnailExtensions.h */,
+				A2751541206CEB23000E300A /* NSImageThumbnailExtensions.m */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
 		A27A8D2B2065557D004C75C5 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +92,7 @@
 		A27A8D362065557D004C75C5 /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
+				A2751543206CEBEA000E300A /* Libs */,
 				A27A8D372065557D004C75C5 /* AppDelegate.h */,
 				A27A8D382065557D004C75C5 /* AppDelegate.m */,
 				A27A8D4D20655ACC004C75C5 /* Controller */,
@@ -98,6 +114,8 @@
 				A27A8D5420656D24004C75C5 /* IVImageLoader.m */,
 				A27A8D592069DB39004C75C5 /* NSPasteboard+ImageExtention.h */,
 				A27A8D5A2069DB39004C75C5 /* NSPasteboard+ImageExtention.m */,
+				A275154D206CF7F1000E300A /* IVImagePropertyContainer.h */,
+				A275154E206CF7F1000E300A /* IVImagePropertyContainer.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,8 +223,10 @@
 				A27A8D5120655B2D004C75C5 /* IVCollectionViewItem.m in Sources */,
 				A27A8D442065557D004C75C5 /* main.m in Sources */,
 				A239231D206A7F5200F80FE3 /* IVFullSizeImageViewerController.m in Sources */,
+				A275154F206CF7F1000E300A /* IVImagePropertyContainer.m in Sources */,
 				A27A8D392065557D004C75C5 /* AppDelegate.m in Sources */,
 				A2392320206A87D000F80FE3 /* NSImage+GuasianBlur.m in Sources */,
+				A2751542206CEB23000E300A /* NSImageThumbnailExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

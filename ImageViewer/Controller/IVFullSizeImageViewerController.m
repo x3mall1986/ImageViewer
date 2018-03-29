@@ -9,6 +9,7 @@
 #import "IVFullSizeImageViewerController.h"
 #import "IVImageLoader.h"
 #import "NSImage+GuasianBlur.h"
+#import "IVImagePropertyContainer.h"
 
 @interface IVFullSizeImageViewerController ()
 
@@ -51,7 +52,10 @@
 
 - (void)showImageByIndex:(NSInteger)index {
     if (index >= 0 && index < self.imageLoader.countOfImages) {
-        self.imageView.image = [self.imageLoader imageAtIndex:index];
+        IVImagePropertyContainer *container = [self.imageLoader imageContainerAtIndex:index];
+        [container thumbnailImage:^(NSImage *thumbnailImage) {
+            self.imageView.image = thumbnailImage;
+        }];
     }
 }
 

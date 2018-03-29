@@ -7,9 +7,10 @@
 //
 
 #import "IVImageLoader.h"
+#import "IVImagePropertyContainer.h"
 
 @interface IVImageLoader()
-@property (strong) NSMutableArray <NSImage *>*images;
+@property (strong) NSMutableArray <IVImagePropertyContainer *>*imagePropertyContainers;
 @end
 
 @implementation IVImageLoader
@@ -19,7 +20,7 @@
     self = [super init];
     
     if (self) {
-        self.images = [[self imagesFromAssets] mutableCopy];
+        self.imagePropertyContainers = [[self imagesFromAssets] mutableCopy];
     }
     
     return self;
@@ -27,24 +28,24 @@
 
 #pragma mark - Private Methods
 - (NSArray *)imagesFromAssets {
-    NSArray *array = @[[NSImage imageNamed:@"Photo_1"],
-                       [NSImage imageNamed:@"Photo_2"]];
+    NSArray *array = @[[[IVImagePropertyContainer alloc] initWithImageName:@"Photo_1"],
+                       [[IVImagePropertyContainer alloc] initWithImageName:@"Photo_2"]];
     return array;
 }
 
 #pragma mark - Public Methods
 - (NSUInteger)countOfImages {
-    return self.images.count;
+    return self.imagePropertyContainers.count;
 }
 
-- (NSImage *)imageAtIndex:(NSInteger)index {
-    return self.images[index];
+- (IVImagePropertyContainer *)imageContainerAtIndex:(NSInteger)index {
+    return self.imagePropertyContainers[index];
 }
 
 - (void)addImageByURL:(NSURL *)url {
-    NSImage *image = [[NSImage alloc] initWithContentsOfURL:url];
-    if (image) {
-        [self.images addObject:image];
+    IVImagePropertyContainer *imageContainer = [[IVImagePropertyContainer alloc] initWithImageURL:url];
+    if (imageContainer.image) {
+        [self.imagePropertyContainers addObject:imageContainer];
     }
 }
 

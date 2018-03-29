@@ -11,6 +11,8 @@
 #import "IVImageLoader.h"
 #import "IVCollectionView.h"
 #import "IVFullSizeImageViewerController.h"
+#import "NSImageThumbnailExtensions.h"
+#import "IVImagePropertyContainer.h"
 
 @interface ViewController()<NSCollectionViewDataSource, NSCollectionViewDelegate, DragCollectionViewDelegate, IVFullSizeImageViewerControllerDelegate>
 @property (nonatomic, weak) IBOutlet IVCollectionView *collectionView;
@@ -54,7 +56,10 @@
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     IVCollectionViewItem *collectionViewItem = [collectionView makeItemWithIdentifier:@"IVCollectionViewItem" forIndexPath:indexPath];
-    collectionViewItem.imageView.image = [self.imageLoader imageAtIndex:indexPath.item];
+    IVImagePropertyContainer *imageContainer = [self.imageLoader imageContainerAtIndex:indexPath.item];
+    [imageContainer thumbnailImage:^(NSImage *thumbnailImage) {
+        collectionViewItem.imageView.image = thumbnailImage;
+    }];
     
     return collectionViewItem;
 }
@@ -70,8 +75,15 @@
 
 #pragma mark - DragCollectionView Delegate
 - (void)didDragFileWithURL:(NSURL *)URL {
-    [self.imageLoader addImageByURL:URL];
-    [self.collectionView reloadData];
+    [self.collectionView performBatchUpdates:^{
+        NSInteger oldSize = self.imageLoader.countOfImages;
+        [self.imageLoader addImageByURL:URL];
+        NSMutableSet *setWithIndexPaths = [NSMutableSet set];
+        for (NSInteger i = oldSize; i < self.imageLoader.countOfImages; i++) {
+            [setWithIndexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+        }
+        [self.collectionView insertItemsAtIndexPaths:setWithIndexPaths];
+    } completionHandler:nil];
 }
 
 #pragma mark - FullSizeImageViewerController Delegate
